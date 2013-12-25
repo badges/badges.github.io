@@ -134,3 +134,6 @@ form .form-group {
 .notice {
   padding-left: 5px;
 }
+.jumbotron iframe {
+  float: right;
+}
