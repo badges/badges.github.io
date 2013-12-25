@@ -97,6 +97,7 @@ body {
   border: 1px solid #e5e5e5;
   border-radius: 6px;
   padding: 1ex;
+  height: 160px;
 }
 form .form-group {
   margin-top: -80px;
@@ -104,4 +105,9 @@ form .form-group {
 }
 #demo {
   margin-top: -80px;
+}
+#url {
+  display: block;
+  margin-top: 10px;
+  width: 100%;
 }
