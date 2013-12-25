@@ -43,9 +43,21 @@
       <div class="jumbotron">
         <h1>Retina badges</h1>
         <p class="lead">Because I am sick of all those blurry images on otherwise pixel&nbsp;perfect GitHub pages.</p>
+        <p class="lead">This service also can also turn your Travis CI, Coveralls and VersionEye badges to retina versions.</p>
       </div>
       
-      <form class="form-inline border" role="form">
+      <div class="border service-form">
+        <h3>Retinify Travis CI, Coveralls or VersionEye.</h3>
+        <p>Paste url to ugly png badge:</p>
+        <input type="text" class="form-control" id="url-original">
+        <img src="" id="image-original" class="preview">
+        <p>This is url with awesome svg badge:</p>
+        <input type="text" class="form-control" id="url-svg">
+        <img src="" id="image-svg" class="preview">
+      </div>
+
+      <form class="form-inline border demo-form" role="form">
+        <h3>Create your own badge</h3>
         <div class="colors">
           <div class="radio">
             <label>
@@ -146,7 +158,19 @@
             $(this).parent().parent().addClass('checked');
           });
           update();
+
+          $('#url-original').on('keyup', service);
         });
+
+        function service()
+        {
+          var uo = $('#url-original');
+          var orig = uo.val();
+          $('#image-original').attr('src', orig);
+          var url = 'https://khancdn.eu/badges.php?service=' + encodeURIComponent(orig);
+          $('#url-svg').val(url);
+          $('#image-svg').attr('src', url);
+        }
 
         function update()
         {
