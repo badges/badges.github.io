@@ -137,3 +137,6 @@ form .form-group {
 .jumbotron iframe {
   float: right;
 }
+.waiting {
+  color: gray;
+}

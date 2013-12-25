@@ -52,10 +52,10 @@
       <div class="border service-form">
         <h3>Retinify Travis CI, Coveralls or VersionEye.</h3>
         <p>Paste url to ugly png badge:</p>
-        <input type="text" class="form-control" id="url-original">
+        <input type="text" class="form-control waiting" id="url-original" value="https://travis-ci.org/Mikulas/csfd-api.png?branch=master">
         <img src="" id="image-original" class="preview">
         <p>This is url with awesome svg badge:</p>
-        <input type="text" class="form-control" id="url-svg">
+        <input type="text" class="form-control waiting" id="url-svg">
         <img src="" id="image-svg" class="preview">
       </div>
 
@@ -170,6 +170,7 @@
         var $key = $('#key');
         var $value = $('#value');
         var $demo = $('#demo');
+        var demoUrl = true;
 
         $(function() {
           $key.change(update).keyup(update);
@@ -182,6 +183,12 @@
           update();
 
           $('#url-original').on('keyup', service);
+          service(); // first demo
+          $('#url-original').focus(function() {
+            $(this).removeClass('waiting').val('');
+            $('#url-svg').removeClass('waiting').val('');
+            $(this).unbind('focus');
+          })
         });
 
         function service()
@@ -189,7 +196,10 @@
           var uo = $('#url-original');
           var orig = uo.val();
           $('#image-original').attr('src', orig);
-          var url = 'https://khancdn.eu/badges.php?service=' + encodeURIComponent(orig);
+          var url = '';
+          if (orig) {
+            url = 'https://khancdn.eu/badges.php?service=' + encodeURIComponent(orig);
+          }
           $('#url-svg').val(url);
           $('#image-svg').attr('src', url);
         }
