@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="ico/favicon.png">
+
+    <title>Retina Badges</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">Project name</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Retina badges</h1>
+        <p class="lead">Because I am sick of all those blurry images on otherwise pixel&nbsp;perfect GitHub pages.</p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Use it now</a></p>
+      </div>
+
+      <form class="form-inline" role="form">
+        <div class="xwell colors">
+          <div class="radio">
+            <label>
+              <input type="radio" name="color" value="lightgrey">
+              <img src="https://khancdn.eu/badges.php?key=&value=&color=lightgrey" height="18" width="18">
+              Light grey
+            </label>
+          </div>
+          <div class="radio checked">
+            <label>
+              <input type="radio" name="color" value="brightgreen" checked>
+              <img src="https://khancdn.eu/badges.php?key=&value=&color=brightgreen" height="18" width="18">
+              Bright green
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="color" value="yellow">
+              <img src="https://khancdn.eu/badges.php?key=&value=&color=yellow" height="18" width="18">
+              Yellow
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="color" value="red">
+              <img src="https://khancdn.eu/badges.php?key=&value=&color=red" height="18" width="18">
+              Red
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="color" value="blue">
+              <img src="https://khancdn.eu/badges.php?key=&value=&color=blue" height="18" width="18">
+              Blue
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="key" value="build">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="value" value="passing">
+        </div>
+        <img src="" height="18" id="demo">
+      </form>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Acknowledgments</h4>
+          <p><a href="https://github.com/gittip/shields.io">gittip/shields.io</a> for the shield template</p>
+          <p><a href="https://github.com/gittip/img.shields.io">gittip/img.shields.io</a> for the idea</p>
+
+          <h4>Missing font? Yeah</h4>
+          <p>What you need is open sans.</p>
+        </div>
+        <div class="col-lg-6">
+          <h4>Multiple colors</h4>
+          <p><img src="https://khancdn.eu/badges.php?key=color&value=grey&color=lightgrey" height="18"></p>
+          <p><img src="https://khancdn.eu/badges.php?key=color&value=green&color=brightgreen" height="18"></p>
+          <p><img src="https://khancdn.eu/badges.php?key=color&value=yellow&color=yellow" height="18"></p>
+          <p><img src="https://khancdn.eu/badges.php?key=color&value=red&color=red" height="18"></p>
+          <p><img src="https://khancdn.eu/badges.php?key=color&value=blue&color=blue" height="18"></p>
+
+          <h4>Vectors &mdash; they scale!</h4>
+          <p><img src="https://khancdn.eu/badges.php?key=increase&value=size&color=blue" height="18"></p>
+          <p><img src="https://khancdn.eu/badges.php?key=increase&value=size&color=blue" height="24"></p>
+          <p><img src="https://khancdn.eu/badges.php?key=increase&value=size&color=blue" height="32"></p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Mikuláš Dítě 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      (function() {
+        var $key = $('#key');
+        var $value = $('#value');
+        var $demo = $('#demo');
+
+        $(function() {
+          $key.change(update).keyup(update);
+          $value.change(update).keyup(update);
+          $value.change(update).keyup(update);
+          $('input[type=radio][name=color]').change(update).change(function() {
+            $('.radio.checked').removeClass('checked');
+            $(this).parent().parent().addClass('checked');
+          });
+          update();
+        });
+
+        function update()
+        {
+          var color = $('input[name=color]:checked').val();
+          $demo.attr('src', 'https://khancdn.eu/badges.php?key='
+            + encodeURIComponent($key.val())
+            + '&value='
+            + encodeURIComponent($value.val())
+            + '&color='
+            + encodeURIComponent(color)
+          );
+        }
+      })();
+    </script>
+  </body>
+</html>
